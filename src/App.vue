@@ -1,8 +1,7 @@
 <template lang="html">
   <div id="app" class="grid">
-    <h1>BrewDog Beers</h1>
+    <h1 id="header">BrewDog Beers</h1>
     <div>
-      
       <beers :beers="beers" class="flexbox"></beers>
     </div>
     <div>
@@ -65,5 +64,13 @@ export default {
 
 li {
   list-style-type: none;
+}
+
+img {
+  max-height: 200px;
+}
+
+#header {
+  grid-column: 1/3;
 }
 </style>
