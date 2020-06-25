@@ -10,12 +10,14 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
   name: 'beer-detail',
   props: ['beer'],
   methods: {
       setFavourite() {
-        this.beer.favourite = !this.beer.favourite
+          eventBus.$emit('set-favourite', this.beer)
       }
   }
 }

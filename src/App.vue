@@ -5,10 +5,10 @@
       <beers :beers="favourites" class="flexbox"></beers>
     </div>
     <div>
-      <beers :beers="beers" class="flexbox"></beers>
+      <beer-detail :beer="selectedBeer"></beer-detail>
     </div>
     <div>
-      <beer-detail :beer="selectedBeer"></beer-detail>
+      <beers :beers="beers" class="flexbox"></beers>
     </div>
   </div>
 </template>
@@ -31,6 +31,15 @@ export default {
     "beers": Beers,
     "beer-detail": BeerDetail
   },
+
+  computed: {
+    favourites: function() {
+      return this.beers.filter(beer => {
+        beer.favourite
+      })
+    }
+  },
+
   mounted(){
     fetch('https://api.punkapi.com/v2/beers')
     .then(res => res.json())
@@ -44,12 +53,19 @@ export default {
     eventBus.$on('beer-selected', (beer) => {
       this.selectedBeer = beer
     })
+
+    eventBus.$on('set-favourite', (beer) => {
+      this.setFavourite(beer)
+    })
+  
   },
-  computed: {
-    favourites: function() {
-      return this.beers.filter(beer => {
-        beer.favourite
-      })
+
+  methods: {
+    setFavourite: function (beer) {
+      const index = this.beers.indexOf(beer)
+      const foundBeer = {...this.beers[index]}
+      foundBeer.favourite = !foundBeer.favourite
+      this.beers[index] = foundBeer
     }
   }
 }
