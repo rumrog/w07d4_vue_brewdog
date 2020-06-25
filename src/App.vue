@@ -1,10 +1,13 @@
 <template lang="html">
   <div id="app" class="grid">
+    <h1>BrewDog Beers</h1>
     <div>
-      <h1>Beers</h1>
+      
       <beers :beers="beers" class="flexbox"></beers>
     </div>
-    
+    <div>
+      <beer-detail :beer="selectedBeer"></beer-detail>
+    </div>
     <div>
       <!-- favourite-beers -->
     </div>
@@ -21,8 +24,8 @@ export default {
   name: 'App',
   data(){
     return {
-      beers: []
-      // selectedBeer: null
+      beers: [],
+      selectedBeer: null
     }
   },
   components: {
@@ -34,9 +37,9 @@ export default {
     .then(res => res.json())
     .then(beers => this.beers = beers)
 
-    // eventBus.$on('beer-selected', (beer) => {
-    //   this.selectedBeer = beer
-    // })
+    eventBus.$on('beer-selected', (beer) => {
+      this.selectedBeer = beer
+    })
   }
 }
 </script>

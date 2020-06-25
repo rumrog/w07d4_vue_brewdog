@@ -1,10 +1,13 @@
 <template lang="html">
-  <h4> individual beer </h4>
+  <div v-if="beer !== null">
+    <h4> {{beer.name}} </h4>
+  </div>
 </template>
 
 <script>
 export default {
-
+  name: 'beer-detail',
+  props: ['beer']
 }
 </script>
 
