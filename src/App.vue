@@ -2,13 +2,13 @@
   <div id="app" class="grid">
     <h1 id="header">BrewDog Beers</h1>
     <div>
+      <beers :beers="favourites" class="flexbox"></beers>
+    </div>
+    <div>
       <beers :beers="beers" class="flexbox"></beers>
     </div>
     <div>
       <beer-detail :beer="selectedBeer"></beer-detail>
-    </div>
-    <div>
-      <!-- favourite-beers -->
     </div>
   </div>
 </template>
@@ -34,17 +34,30 @@ export default {
   mounted(){
     fetch('https://api.punkapi.com/v2/beers')
     .then(res => res.json())
-    .then(beers => this.beers = beers)
+    .then(beers => {
+      beers.forEach((beer) => {
+        beer.favourite = false
+      })
+      this.beers = beers
+      })
 
     eventBus.$on('beer-selected', (beer) => {
       this.selectedBeer = beer
     })
+  },
+  computed: {
+    favourites: function() {
+      return this.beers.filter(beer => {
+        beer.favourite
+      })
+    }
   }
 }
 </script>
 
 <style lang="css">
 #app {
+  background-color: aliceblue;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,10 +77,6 @@ export default {
 
 li {
   list-style-type: none;
-}
-
-img {
-  max-height: 200px;
 }
 
 #header {

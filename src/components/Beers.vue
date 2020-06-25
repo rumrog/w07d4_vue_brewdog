@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h4> Beers </h4>
+
     <ul>
         <list-component v-for="(beer, index) in beers" :beer="beer" :key="index"></list-component>
     </ul>
@@ -21,5 +21,8 @@ export default {
 </script>
 
 <style lang="css">
-
+ul {
+    display: flex;
+    flex-wrap: wrap;
+}
 </style>

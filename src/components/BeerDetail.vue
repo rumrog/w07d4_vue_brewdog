@@ -5,21 +5,32 @@
     <img :src="beer.image_url">
     <p> {{beer.description}} </p>
     <p>ABV: {{beer.abv}} %</p>
+    <label for="favourite">Favourite this beer </label><input v-on:change="setFavourite" id="favourite" type="checkbox">
   </div>
 </template>
 
 <script>
 export default {
   name: 'beer-detail',
-  props: ['beer']
+  props: ['beer'],
+  methods: {
+      setFavourite() {
+        this.beer.favourite = !this.beer.favourite
+      }
+  }
 }
 </script>
 
 <style lang="css">
 
 .selected-beer {
-    border: 3px;
-    border-style: double;
+  background-color: white;
+  border: 3px;
+  border-style: double;
+}
+
+.selected-beer img {
+  max-height: 200px;
 }
 
 </style>
