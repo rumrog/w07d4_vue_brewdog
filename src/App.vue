@@ -34,8 +34,9 @@ export default {
 
   computed: {
     favourites: function() {
-      return this.beers.filter(beer => {
-        beer.favourite
+      // console.log("i'm running the favourites")
+      return this.beers.filter((beer) => {
+        return beer.favourite
       })
     }
   },
@@ -65,8 +66,9 @@ export default {
       const index = this.beers.indexOf(beer)
       const foundBeer = {...this.beers[index]}
       foundBeer.favourite = !foundBeer.favourite
-      this.beers[index] = foundBeer
-    }
+      this.beers.splice(index, 0, foundBeer) 
+    },
+
   }
 }
 </script>

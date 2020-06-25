@@ -1,4 +1,4 @@
-<template lang="html">
+ <template lang="html">
   <div class="selected-beer" v-if="beer !== null">
     <h4> {{beer.name}} </h4>
     <h5> {{beer.tagline}} </h5>
