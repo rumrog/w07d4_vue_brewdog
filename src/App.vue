@@ -66,8 +66,8 @@ export default {
       const index = this.beers.indexOf(beer)
       const foundBeer = {...this.beers[index]}
       foundBeer.favourite = !foundBeer.favourite
-      this.beers.splice(index, 0, foundBeer) 
-    },
+      this.beers.splice(index, 1, foundBeer) 
+    }
 
   }
 }

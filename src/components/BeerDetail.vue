@@ -5,7 +5,7 @@
     <img :src="beer.image_url">
     <p> {{beer.description}} </p>
     <p>ABV: {{beer.abv}} %</p>
-    <label for="favourite">Favourite this beer </label><input v-on:change="setFavourite" id="favourite" type="checkbox">
+    <label for="favourite">Favourite this beer </label><input v-on:change="setFavourite" id="favourite" type="checkbox" value="unchecked" >
   </div>
 </template>
 
